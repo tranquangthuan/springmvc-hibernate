@@ -64,6 +64,7 @@ td {
 <body>
 
 	<div align="center">
+		<a href="add">Add new Product</a>
 		<table>
 			<thead>
 				<tr>
