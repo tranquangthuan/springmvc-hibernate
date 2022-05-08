@@ -26,25 +26,10 @@
 	border: 1px solid #4CAF50;
 }
 
-.pagination
- 
-a
-:hover
-:not
- 
-(
-.active
- 
-)
-{
-background-color
-:
- 
-#ddd
-;
-
-
+.pagination a:hover:not(.active) {
+	background-color: #ddd;
 }
+
 table, td, th {
 	border: 1px solid black;
 }
