@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.fa.demomvc.entity.Product;
+import com.fa.demomvc.page.PageAble;
 import com.fa.demomvc.service.ProductService;
 
 @Controller
@@ -24,11 +25,21 @@ public class ProductController {
 	@Autowired
 	private ProductService productService;
 
-	@RequestMapping("/list")
-	public String getAllProduct(Model model) {
+//	@RequestMapping("/list")
+//	public String getAllProduct(Model model) {
+//		List<Product> products = productService.findAll();
+//		model.addAttribute("products", products);
+//
+//		return "product-list";
+//	}
 
-		List<Product> products = productService.findAll();
+	@RequestMapping("/list")
+	public String getAllProductWithPageAble(Model model, @RequestParam(defaultValue = "1") Integer page) {
+		PageAble pageAble = new PageAble(page);
+		List<Product> products = productService.findWithPageAble(pageAble);
 		model.addAttribute("products", products);
+		model.addAttribute("totalPages", productService.totalPages(pageAble));
+		model.addAttribute("currentPage", page);
 
 		return "product-list";
 	}

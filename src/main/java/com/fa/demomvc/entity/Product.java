@@ -5,8 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 
 import org.hibernate.validator.constraints.Range;
@@ -27,7 +25,6 @@ public class Product {
 
 	public Product() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Product(String name, int quantity) {

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fa.demomvc.entity.Product;
+import com.fa.demomvc.page.PageAble;
 import com.fa.demomvc.repository.ProductRepository;
 
 @Service
@@ -41,6 +42,19 @@ public class ProductServiceImpl implements ProductService {
 	@Transactional
 	public Product findById(long id) {
 		return productRepository.findById(id);
+	}
+
+	@Override
+	@Transactional
+	public List<Product> findWithPageAble(PageAble pageAble) {
+		return productRepository.findWithPageAble(pageAble);
+	}
+
+	@Override
+	@Transactional
+	public int totalPages(PageAble pageAble) {
+		long totalRecord = productRepository.count();
+		return (int) Math.ceil((double) totalRecord / pageAble.getSize());
 	}
 
 }

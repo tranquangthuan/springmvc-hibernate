@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.fa.demomvc.entity.Product;
+import com.fa.demomvc.page.PageAble;
 
 @Repository
 public class ProductRepositoryImpl implements ProductRepository {
@@ -38,5 +39,19 @@ public class ProductRepositoryImpl implements ProductRepository {
 	public Product findById(long id) {
 		Session session = sessionFactory.getCurrentSession();
 		return session.find(Product.class, id);
+	}
+
+	@Override
+	public List<Product> findWithPageAble(PageAble pageAble) {
+		Session session = sessionFactory.getCurrentSession();
+		List<Product> products = session.createQuery("SELECT p FROM Product p", Product.class)
+				.setFirstResult(pageAble.getOffset()).setMaxResults(pageAble.getSize()).getResultList();
+		return products;
+	}
+
+	@Override
+	public long count() {
+		Session session = sessionFactory.getCurrentSession();
+		return session.createQuery("SELECT COUNT(*) FROM Product p", Long.class).getSingleResult();
 	}
 }
