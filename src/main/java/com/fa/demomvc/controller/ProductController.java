@@ -58,7 +58,7 @@ public class ProductController {
 		productService.saveOrUpdate(product);
 		return "redirect:/product/list";
 	}
-
+	
 	@RequestMapping("/delete")
 	public String delete(@RequestParam(name = "id") long productId) {
 		System.out.println("productId=" + productId);

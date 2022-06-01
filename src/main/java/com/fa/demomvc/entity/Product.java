@@ -16,11 +16,11 @@ public class Product {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
-	@Column
+	@Column(name = "name", columnDefinition = "nvarchar(255)", nullable = false)
 	@NotBlank(message = "please input name")
 	private String name;
 
-	@Range(min = 1, max = 1000, message = "Please input in range 1 - 1000")
+	@Range(min = 1, max = 1000, message = "Nhập quantity trong khoảng 1 - 1000")
 	private int quantity;
 
 	public Product() {

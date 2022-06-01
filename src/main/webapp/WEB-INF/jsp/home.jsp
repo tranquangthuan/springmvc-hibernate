@@ -8,5 +8,6 @@
 </head>
 <body>
 	<h1>Home jsp page</h1>
+	Message from server : ${message }
 </body>
 </html>

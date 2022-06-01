@@ -45,7 +45,10 @@ public class ProductRepositoryImpl implements ProductRepository {
 	public List<Product> findWithPageAble(PageAble pageAble) {
 		Session session = sessionFactory.getCurrentSession();
 		List<Product> products = session.createQuery("SELECT p FROM Product p", Product.class)
-				.setFirstResult(pageAble.getOffset()).setMaxResults(pageAble.getSize()).getResultList();
+				.setFirstResult(pageAble.getOffset())// Offset
+				.setMaxResults(pageAble.getSize()) // limit
+				.getResultList();
+
 		return products;
 	}
 
