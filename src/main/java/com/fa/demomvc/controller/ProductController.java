@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,7 +34,7 @@ public class ProductController {
 //		return "product-list";
 //	}
 
-	@RequestMapping("/list")
+	@GetMapping("/list")
 	public String getAllProductWithPageAble(Model model, @RequestParam(defaultValue = "1") Integer page) {
 		PageAble pageAble = new PageAble(page);
 		List<Product> products = productService.findWithPageAble(pageAble);
@@ -44,7 +45,7 @@ public class ProductController {
 		return "product-list";
 	}
 
-	@RequestMapping("/add")
+	@GetMapping("/add")
 	public String showAddForm(Model model) {
 		model.addAttribute("productForm", new Product());
 		return "newProduct";
@@ -58,8 +59,8 @@ public class ProductController {
 		productService.saveOrUpdate(product);
 		return "redirect:/product/list";
 	}
-	
-	@RequestMapping("/delete")
+
+	@GetMapping("/delete")
 	public String delete(@RequestParam(name = "id") long productId) {
 		System.out.println("productId=" + productId);
 		productService.delete(productId);
